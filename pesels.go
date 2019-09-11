@@ -29,7 +29,7 @@ func btoi(b byte) (int, bool) {
 }
 
 func valid(pesel []byte) ([]int, bool) {
-	if !(utf8.Valid(pesel) || len(pesel) == 11) {
+	if !(utf8.Valid(pesel) && len(pesel) == 11) {
 		return nil, false // Invalid length.
 	}
 
