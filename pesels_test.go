@@ -71,7 +71,7 @@ func TestValid(t *testing.T) {
 	}
 }
 
-func TestParse(t *testing.T) {
+func TestDecode(t *testing.T) {
 	type args struct {
 		pesel string
 	}
@@ -200,14 +200,34 @@ func TestParse(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := Parse(tt.args.pesel)
+			got, err := Decode(tt.args.pesel)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("Parse() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("Decode() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("Parse() = %v, want %v", got, tt.want)
+				t.Errorf("Decode() = %v, want %v", got, tt.want)
 			}
 		})
 	}
+}
+
+var v bool
+
+func BenchmarkValid(b *testing.B) {
+	var x bool
+	for n := 0; n < b.N; n++ {
+		x = Valid("97092101999")
+	}
+	v = x
+}
+
+var p PESEL
+
+func BenchmarkDecode(b *testing.B) {
+	var x PESEL
+	for n := 0; n < b.N; n++ {
+		x, _ = Decode("97092101999")
+	}
+	p = x
 }

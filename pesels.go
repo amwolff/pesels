@@ -1,3 +1,4 @@
+// Package pesels provides utilities for working with Polish PESEL numbers.
 package pesels
 
 import (
@@ -55,6 +56,8 @@ func valid(pesel []byte) ([]int, bool) {
 	return append(rewritten, ld), checksum%10 == ld
 }
 
+// Valid reports wheter `pesel` represents a valid PESEL number (e.g. has a
+// valid checksum).
 func Valid(pesel string) bool {
 	_, ok := valid([]byte(pesel))
 	return ok
@@ -76,7 +79,10 @@ type PESEL struct {
 
 var ErrInvalid = xerrors.New("invalid input string")
 
-func Parse(pesel string) (PESEL, error) {
+// Decode decodes valid `pesel` into a `PESEL`. It returns `ErrInvalid` if
+// `pesel` does not represent a valid PESEL number. Date of birth is parsed in
+// the Europe/Warsaw time zone.
+func Decode(pesel string) (PESEL, error) {
 	ret := PESEL{}
 
 	digits, ok := valid([]byte(pesel))
