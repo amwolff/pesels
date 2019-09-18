@@ -52,7 +52,7 @@ func TestValid(t *testing.T) {
 			false,
 		},
 		{
-			"wrong checksum",
+			"invalid checksum",
 			args{"44051401358"},
 			false,
 		},

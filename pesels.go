@@ -63,7 +63,7 @@ func Valid(pesel string) bool {
 	return ok
 }
 
-type Sex uint
+type Sex int
 
 const (
 	Female Sex = iota
@@ -78,10 +78,10 @@ func (s Sex) String() string {
 }
 
 type PESEL struct {
-	DateOfBirth   time.Time `json:"date_of_birth"`
-	OrdinalNumber int       `json:"ordinal_number"`
-	Sex           Sex       `json:"sex"`
-	Checksum      int       `json:"checksum"`
+	DateOfBirth   time.Time
+	OrdinalNumber int
+	Sex           Sex
+	CheckDigit    int
 }
 
 var ErrInvalid = xerrors.New("invalid input string")
@@ -143,7 +143,7 @@ func Decode(pesel string) (PESEL, error) {
 		ret.Sex = Male
 	}
 
-	ret.Checksum = digits[10]
+	ret.CheckDigit = digits[10]
 
 	return ret, nil
 }

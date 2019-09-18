@@ -49,12 +49,12 @@ func main() {
 			"Date of birth: %s\n\t"+
 			"Ordinal number: %d\n\t"+
 			"Sex: %s\n\t"+
-			"Checksum: %d\n",
+			"Check digit: %d\n",
 		input,
 		p.DateOfBirth.Format("Mon Jan 2 -0700 MST 2006"),
 		p.OrdinalNumber,
 		p.Sex,
-		p.Checksum)
+		p.CheckDigit)
 }
 ```
 
@@ -65,5 +65,5 @@ func main() {
         Date of birth: Sat Aug 19 +0200 CEST 2017
         Ordinal number: 3932
         Sex: Female
-        Checksum: 3
+        Check digit: 3
 ```
