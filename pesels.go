@@ -70,6 +70,13 @@ const (
 	Male
 )
 
+func (s Sex) String() string {
+	if s == Female {
+		return "Female"
+	}
+	return "Male"
+}
+
 type PESEL struct {
 	DateOfBirth   time.Time `json:"date_of_birth"`
 	OrdinalNumber int       `json:"ordinal_number"`
