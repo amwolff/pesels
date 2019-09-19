@@ -2,10 +2,9 @@
 package pesels
 
 import (
+	"errors"
 	"time"
 	"unicode/utf8"
-
-	"golang.org/x/xerrors"
 )
 
 var loc *time.Location
@@ -84,7 +83,7 @@ type PESEL struct {
 	CheckDigit    int
 }
 
-var ErrInvalid = xerrors.New("invalid input string")
+var ErrInvalid = errors.New("invalid input string")
 
 // Decode decodes valid `pesel` into a `PESEL`. It returns `ErrInvalid` if
 // `pesel` does not represent a valid PESEL number. Date of birth is parsed in

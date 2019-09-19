@@ -9,7 +9,7 @@ import (
 func main() {
 	input := "17281939323"
 
-	p, err := pesels.Decode(input)
+	pesel, err := pesels.Decode(input)
 	if err != nil {
 		panic(err)
 	}
@@ -21,8 +21,8 @@ func main() {
 			"Sex: %s\n\t"+
 			"Check digit: %d\n",
 		input,
-		p.DateOfBirth.Format("Mon Jan 2 -0700 MST 2006"),
-		p.OrdinalNumber,
-		p.Sex,
-		p.CheckDigit)
+		pesel.DateOfBirth.Format("Mon Jan 2 -0700 MST 2006"),
+		pesel.OrdinalNumber,
+		pesel.Sex,
+		pesel.CheckDigit)
 }
